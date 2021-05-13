@@ -1,0 +1,262 @@
+
+@media (min-width:320px) and (max-width:500px){
+    .for-pc{
+        display: none;
+    }
+    .for-mob{
+        display: block;
+    }
+    .ad-shop-btn{
+        right: 0;
+        left: unset;
+    }
+    .category_desktop{
+        display: none;
+    }
+    .horizontal_item .icon {
+        height: 50px;
+    }
+    .website_main_section .right .right-item {
+        text-align: center;
+    }
+    .footer-top .left{
+        text-align: center;
+    }
+    .footer-top .middle{
+        position: unset;
+        transform: unset;
+        width: 100%;
+        margin-top: 15px;
+    }
+    .footer-top .right ul{
+        position: unset;
+        transform: unset;
+        margin-top: 15px;
+    }
+    .widget-box{
+        margin-top: 15px;
+    }
+    .widget-box img{
+        display: block;
+        margin: 0 auto;
+    }
+    .product-box .add_cart{
+        top: 0;
+    }
+    .product-item-row .detail, .product-item-row .image{
+        text-align: center;
+    }
+    .snackbar{
+        font-family: "Bree Serif", serif;
+        position: fixed;
+        top: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #605e5e;
+        color: white;
+        text-indent: inherit;
+        border-radius: 5px;
+        box-shadow: #84c225 2px 2px 3px 0px;
+        padding: 20px 0px;
+        cursor: pointer;
+        z-index: 10;
+        width: 80%;
+        text-align: center;
+      
+      }
+}
+
+
+
+
+@media (min-width:500px) and (max-width:768px){
+    .for-pc{
+        display: none;
+    }
+    .for-mob{
+        display: block;
+    }
+    .ad-shop-btn{
+        right: 0;
+        left: unset;
+    }
+    .category_desktop{
+        display: none;
+    }
+    .shipping_detail_desktop{
+        display: none;
+    }
+    .banner_desktop{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .footer-top .left h4{
+        font-size: 17px;
+    }
+    .horizontal_item .icon {
+        height: 50px;
+    }
+    .widget-box h4{
+        font-size: 17px;
+    }
+    .product-box .add_cart{
+        top: 0;
+    }
+    .snackbar{
+        font-family: "Bree Serif", serif;
+        position: fixed;
+        top: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #605e5e;
+        color: white;
+        text-indent: inherit;
+        border-radius: 5px;
+        box-shadow: #84c225 2px 2px 3px 0px;
+        padding: 20px 0px;
+        cursor: pointer;
+        z-index: 10;
+        width: 80%;
+        text-align: center;
+      
+      }
+}
+
+
+
+@media (min-width:768px) and (max-width:990px){
+    .for-pc{
+        display: none;
+    }
+    .for-mob{
+        display: block;
+    }
+    .ad-shop-btn{
+        right: 0;
+        left: unset;
+    }
+
+    .category_desktop{
+        display: none;
+    }
+    .shipping_detail_desktop{
+        display: none;
+    }
+    .banner_desktop{
+        flex: 0 0 100%;
+    max-width: 100%;
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width:991px) and (max-width:1024px){
+    .right-item h5{
+        font-size: 14px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width:990px) and (max-width:1140px){
+    .top-col-right{
+        flex: 0 0 57.666667%;
+        max-width: 57.666667%;
+    }
+    .top-col-left{
+        flex: 0 0 20.666667%;
+        max-width: 20.666667%;
+    }
+    .topbar-search .cat_block{
+        width: 40%;
+    }
+    .topbar-search .search_block{
+        width: 60%;
+    }
+    .search-button {
+        width: 15%;
+    }
+    .free-shipping {
+        position: unset;
+        transform: unset;
+    }
+    .free-shipping .col-md-5, .free-shipping .col-md-4{
+        display: none;
+    }
+    .cart_block{
+        position: unset;
+        transform: unset;
+    }
+    .free-shipping .col-md-3{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+
+
+
+
+
+
+@media (min-width:394px) and (max-width:1240px){
+    .top-col-right{
+        flex: 0 0 57.666667%;
+        max-width: 57.666667%;
+    }
+    .top-col-left{
+        flex: 0 0 20.666667%;
+        max-width: 20.666667%;
+    }
+    .topbar-search .cat_block{
+        width: 40%;
+    }
+    .topbar-search .search_block{
+        width: 60%;
+    }
+    .search-button {
+        width: 15%;
+    }
+    .free-shipping {
+        position: unset;
+        transform: unset;
+    }
+    .free-shipping .col-md-5, .free-shipping .col-md-4{
+        display: none;
+    }
+    .cart_block{
+        position: unset;
+        transform: unset;
+    }
+    .free-shipping .col-md-3{
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
