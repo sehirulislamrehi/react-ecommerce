@@ -8,9 +8,12 @@ import NavbarComponent from "./Components/Includes/pc/NavbarComponent";
 import TopbarComponent from "./Components/Includes/pc/TopbarComponent";
 import TopLogoComponent from "./Components/Includes/pc/TopLogoComponent";
 import HomeComponent from "./Components/Pages/HomeComponent";
+import ProductDetail from "./Components/Pages/ProductDetailComponent";
 
 
 function App() {
+
+  
   return (
 
     <Router>
@@ -43,6 +46,9 @@ function App() {
               <Switch>
                 <Route exact path="/">
                   <HomeComponent></HomeComponent>
+                </Route>
+                <Route path="/product_details/:slug">
+                  <ProductDetail></ProductDetail>
                 </Route>
               </Switch>
               {/* all pages route here */}

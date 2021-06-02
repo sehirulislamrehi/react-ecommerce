@@ -2,10 +2,12 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import GetCategoryData from "../../Functionality/GetCategoryData";
-import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const HomeComponent = () => {
 
+    {/* window scroll to top */}
+    window.scrollTo(0, 0);
 
     const { data:category } = GetCategoryData("https://vuebackend.sehirulislamrehi.com/api/category") 
      
@@ -29,7 +31,7 @@ const HomeComponent = () => {
                                             <div className="item">
                                                 <div className="col-md-12">
                                                     <div className="banner_image_block">
-                                                        <img src="/images/banner-3.jpeg" className="img-fluid" alt=""></img>
+                                                        <img src="/images/banner-3.webp" className="img-fluid" alt=""></img>
                                                     </div>
                                                 </div>
                                             </div>
@@ -39,7 +41,7 @@ const HomeComponent = () => {
                                             <div className="item">
                                                 <div className="col-md-12">
                                                     <div className="banner_image_block">
-                                                        <img src="/images/banner-4.png" className="img-fluid" alt=""></img>
+                                                        <img src="/images/banner-4.webp" className="img-fluid" alt=""></img>
                                                     </div>
                                                 </div>
                                             </div>
@@ -49,7 +51,7 @@ const HomeComponent = () => {
                                             <div className="item">
                                                 <div className="col-md-12">
                                                     <div className="banner_image_block">
-                                                        <img src="/images/banner-5.png" className="img-fluid" alt=""></img>
+                                                        <img src="/images/banner-5.webp" className="img-fluid" alt=""></img>
                                                     </div>
                                                 </div>
                                             </div>
@@ -122,8 +124,7 @@ const HomeComponent = () => {
                                             <div className="col-md-2 col-6">
                                                 
                                                 <div className="product-box">
-                                                    <a href="">
-                                                        {console.log(value)}
+                                                    <Link to={`/product_details/${value.slug}`}>
                                                         <div className="image">
                                                             <img src={value.image} className="img-fluid" alt=""></img>
                                                         </div>
@@ -131,7 +132,7 @@ const HomeComponent = () => {
                                                         {/* <p className="regular_price">100 BDT</p> */}
                                                         <p className="offer_price">{ value.offer_price ? value.offer_price : value.regular_price } BDT</p>
                                                         <button className="add_cart">Add To Cart</button>
-                                                    </a>
+                                                    </Link>
                                                 </div>
                                             </div>
                                             )) }

@@ -24,8 +24,6 @@ const LeftContentComponent = () => {
                             {data.name}
                         </li>
                         ) )}
-                        
-                        
                     </ul>
                 </div>
 

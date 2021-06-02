@@ -323,6 +323,9 @@ button:focus{
   display: inline-block;
   margin-top: 15px;
 }
+.cart_box:hover .cart_list{
+  display: block;
+}
 /* topbar logo end */
 
 

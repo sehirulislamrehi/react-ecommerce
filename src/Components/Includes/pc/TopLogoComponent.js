@@ -1,13 +1,19 @@
+import { Link } from "react-router-dom";
+import GetCategoryData from "../../../Functionality/GetCategoryData";
+
 const TopLogoComponent = () => {
+
+    const { data:category } = GetCategoryData("https://vuebackend.sehirulislamrehi.com/api/category");
+    
      return ( 
           <section className="top-logo">
                <div className="container-fluid">
                     <div className="row">
                          <div className="col-md-1">
                               <div className="logo">
-                                   <a href="">
-                                        <img src="/images/logo.png" className="img-fluid" alt=""></img>
-                                   </a>
+                                  <Link to="/">
+                                    <img src="/images/logo.png" className="img-fluid" alt=""></img>
+                                  </Link>
                               </div>
                         </div>
 
@@ -15,20 +21,11 @@ const TopLogoComponent = () => {
                               <div className="topbar-search">
                                    <form action="">
                                         <div className="form-group cat_block">
-                                             <select name="" className="form-control" required>
-                                             <option>All Categories</option>
-                                             <option>Electronics & Home Appliance </option>
-                                             <option>Women's Fashion</option>
-                                             <option>Gadget Items </option>
-                                             <option>Consumer Promotions </option>
-                                             <option>Cooking Products </option>
-                                             <option>Food Products </option>
-                                             <option>Organic Fruits & Vegetables </option>
-                                             <option>Health & Beauty </option>
-                                             <option>Home & Cleaning </option>
-                                             <option>Office & Stationary </option>
-                                             <option>Medinice </option>
-                                             </select>
+                                            <select name="" className="form-control" required>
+                                                {category && category.map((data) => (
+                                                    <option value={data.id}>{data.name}</option>
+                                                ))}
+                                            </select>
                                         </div>
                                         <div className="form-group search_block">
                                              <input type="search" className="form-control" placeholder="Search..." required></input>
@@ -47,11 +44,6 @@ const TopLogoComponent = () => {
                                     <div className="col-md-12" style={{position: "relative"}}>
                                         <div className="cart_block">
                                             <ul>
-                                                <li>
-                                                    <a href="">
-                                                        <i className="far fa-heart"></i>
-                                                    </a>
-                                                </li>
                                                 <li className="cart_box" id="cart_box" >
                                                     <div className="cart_count">
                                                         <p>5</p>

@@ -9,10 +9,7 @@ const GetCategoryData = (url) => {
           axios.get(url)
           .then( res => {
                setData(res.data.category.data)
-               res.data.category.data.map( cat => {
-                    
-                    
-               })
+               console.log(res)
           })
           .catch( err => {
                console.log(err)
