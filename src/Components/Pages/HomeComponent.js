@@ -78,14 +78,14 @@ const HomeComponent = () => {
                                             {category.map( data => (
                                             <div className="item">
                                                 <div className="col-md-12">
-                                                    <a href="" className="horizontal_item">
+                                                    <Link to={`/category_details/${data.slug}`} className="horizontal_item">
                                                         <div className="">
                                                             <div className="icon">
                                                                 <img src={data.image} alt=""></img>
                                                             </div>
                                                             <p>{data.name}</p>
                                                         </div>
-                                                    </a>
+                                                    </Link>
                                                 </div>
                                             </div>
                                             ))}
@@ -112,7 +112,7 @@ const HomeComponent = () => {
                                             </div>
 
                                             <div className="col-md-6 col-4" style={{textAlign: "right"}}>
-                                                <a href="">View All</a>
+                                                <Link to={`/category_details/${cat.slug}`}>View All</Link>
                                             </div>
                                         </div>
                                         {/* title row end */}

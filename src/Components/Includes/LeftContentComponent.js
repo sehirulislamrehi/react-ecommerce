@@ -1,5 +1,6 @@
-import { useState } from "react";
+
 import GetCategoryData from "../../Functionality/GetCategoryData";
+import { Link } from "react-router-dom";
 
 const LeftContentComponent = () => {
 
@@ -21,7 +22,15 @@ const LeftContentComponent = () => {
                     <ul>
                         {category && category.map((data) => (
                         <li className="nav-click-pc" id="cat-id-1">
+                            <Link to={`/category_details/${data.slug}`}
+                            style={
+                                {
+                                    color: "#000000"
+                                }
+                            }
+                            >
                             {data.name}
+                            </Link>
                         </li>
                         ) )}
                     </ul>

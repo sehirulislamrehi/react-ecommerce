@@ -1,4 +1,9 @@
+import GetCategoryData from "../../../Functionality/GetCategoryData";
+import { Link } from "react-router-dom"
 const NavbarComponent = () => {
+
+     const {data:category} = GetCategoryData("https://vuebackend.sehirulislamrehi.com/api/category");
+
      return ( 
           <section className="top-navbar">
                <div className="container-fluid">
@@ -6,24 +11,14 @@ const NavbarComponent = () => {
                          <div className="col-md-12">
                               <div className="nav-item-list">
                                    <ul>
+                                        { category && category.map( (data) => (
                                         <li>
-                                             <a href="">Electronics & Home Appliance</a>
+                                             <Link to={`/category_details/${data.slug}`}>
+                                                  {data.name}
+                                             </Link>
                                         </li>
-                                        <li>
-                                             <a href="">Women's Fashion</a>
-                                        </li>
-                                        <li>
-                                             <a href="">Health & Beauty</a>
-                                        </li>
-                                        <li>
-                                             <a href="">Home & Cleaning</a>
-                                        </li>
-                                        <li>
-                                             <a href="">Office & Stationary</a>
-                                        </li>
-                                        <li>
-                                             <a href="">Medinice</a>
-                                        </li>
+                                        )) }
+                                        
                                    </ul>
                               </div>
                          </div>

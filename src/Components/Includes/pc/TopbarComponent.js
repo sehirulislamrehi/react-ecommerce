@@ -1,3 +1,6 @@
+
+import { Link } from "react-router-dom";
+
 const TopbarComponent = () => {
      return ( 
           <section className="contact-section">
@@ -34,24 +37,9 @@ const TopbarComponent = () => {
                           <div className="top-useful-link">
                               <ul>
                                   <li>
-                                      <a href="#">
-                                          About Us
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#">
-                                          Contact Us
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#">
-                                          Customer Feedback
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#">
-                                          Onphonic Daily Update
-                                      </a>
+                                      <Link to="/shop">
+                                          Our Shop
+                                      </Link>
                                   </li>
                                   <li>
                                       <a href="#">

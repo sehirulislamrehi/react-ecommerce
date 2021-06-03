@@ -9,7 +9,8 @@ import TopbarComponent from "./Components/Includes/pc/TopbarComponent";
 import TopLogoComponent from "./Components/Includes/pc/TopLogoComponent";
 import HomeComponent from "./Components/Pages/HomeComponent";
 import ProductDetail from "./Components/Pages/ProductDetailComponent";
-
+import CategoryDetailsComponent from "./Components/Pages/CategoryDetailsComponent";
+import ShopComponent from "./Components/Pages/ShopComponent";
 
 function App() {
 
@@ -49,6 +50,12 @@ function App() {
                 </Route>
                 <Route path="/product_details/:slug">
                   <ProductDetail></ProductDetail>
+                </Route>
+                <Route path="/category_details/:slug">
+                  <CategoryDetailsComponent></CategoryDetailsComponent>
+                </Route>
+                <Route path="/shop">
+                  <ShopComponent></ShopComponent>
                 </Route>
               </Switch>
               {/* all pages route here */}

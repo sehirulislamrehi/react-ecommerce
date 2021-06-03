@@ -9,7 +9,6 @@ const GetCategoryData = (url) => {
           axios.get(url)
           .then( res => {
                setData(res.data.category.data)
-               console.log(res)
           })
           .catch( err => {
                console.log(err)
