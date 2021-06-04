@@ -37,7 +37,7 @@ const RegisterComponent = () => {
                document.getElementById("spinner-border").style.display = "none"
                if( res.data.visitor ){
                     MySwal.fire({
-                         title: "Success!",
+                         title: "Success",
                          text: "Registration Successfully Done. Please Login Here",
                     })
                     history.push('/login')

@@ -35,19 +35,36 @@ const TopbarComponent = () => {
 
                       <div className="col-md-7 top-col-right">
                           <div className="top-useful-link">
-                              <ul>
-                                  <li>
-                                      <Link to="/shop">
-                                          Our Shop
-                                      </Link>
-                                  </li>
-                                  <li>
-                                      <Link to="/login">
+                                <ul>
+                                    <li>
+                                        <Link to="/shop">
+                                            Our Shop
+                                        </Link>
+                                    </li>
+
+                                    { localStorage.getItem("authenticated") ?
+                                    ""
+                                    :
+                                    <li>
+                                        <Link to="/login">
+                                                <i className="fas fa-user"></i>
+                                            login
+                                        </Link>
+                                    </li>                                    
+                                    }
+
+                                    
+
+                                    { localStorage.getItem("authenticated") && 
+                                    <li>
+                                        <Link to="/profile">
                                             <i className="fas fa-user"></i>
-                                          Sign In
-                                      </Link>
-                                  </li>
-                              </ul>
+                                            Profile
+                                        </Link>
+                                    </li> 
+                                    }
+                                    
+                                </ul>
                           </div>
                       </div>
 

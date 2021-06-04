@@ -3,6 +3,15 @@ import { useParams } from "react-router";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+import FooterComponent from "../Includes/FooterComponent";
+import LeftContentComponent from "../Includes/LeftContentComponent";
+import CartComponent from "../Includes/mob/CartComponent";
+import SearchComponent from "../Includes/mob/SearchComponent";
+import SideBarComponent from "../Includes/mob/SideBarComponent";
+import NavbarComponent from "../Includes/pc/NavbarComponent";
+import TopbarComponent from "../Includes/pc/TopbarComponent";
+import TopLogoComponent from "../Includes/pc/TopLogoComponent";
+
 const ProductDetail = () => {
 
      {/* window scroll to top */}
@@ -25,46 +34,75 @@ const ProductDetail = () => {
      
 
      return (
-          
-          <section style={
-               {
-                    padding: "30px 0"
-               }
-          }>
-               <div className="container">
-                    {product && (
-                         <div className="row">
 
-                              {/* left part start */}
-                              <div className="col-md-3">
-                                   <img src={product.image} alt="" />
-                              </div>
-                              {/* left part end */}
+          <div className="id">
 
-                              {/* right part start */}
-                              <div className="col-md-9">
-                                   <h1>
-                                        {product.name}
-                                   </h1>
-                                   <p style={
-                                        {
-                                             padding: "15px 0",
-                                        }
-                                   }>
-                                        {product.description}
-                                   </p>
-                                   <button>
-                                        Add to cart
-                                   </button>
-                              </div>
-                              {/* right part end */}
+               <div className="section-top-fixed">
+                    <div className="for-pc">
+                         <TopbarComponent></TopbarComponent>
+                         <TopLogoComponent></TopLogoComponent>
+                         <NavbarComponent></NavbarComponent>
+                    </div>
 
-                              </div>
-                    )}
-                    
+                    <div className="for-mob">
+                         <SideBarComponent></SideBarComponent>
+                         <SearchComponent></SearchComponent>
+                         <CartComponent></CartComponent>
+                    </div>
                </div>
-          </section>
-               
+
+               <section className="website_main_section" id="website_main_section">
+                    <div className="website_main_main_row">
+
+                         <div className="left-content">
+                              <LeftContentComponent></LeftContentComponent>
+                         </div>
+
+                         <div className="right-content">
+                              <section style={
+                                   {
+                                        padding: "30px 0"
+                                   }
+                              }>
+                                   <div className="container">
+                                        {product && (
+                                             <div className="row">
+
+                                                  {/* left part start */}
+                                                  <div className="col-md-3">
+                                                       <img src={product.image} alt="" />
+                                                  </div>
+                                                  {/* left part end */}
+
+                                                  {/* right part start */}
+                                                  <div className="col-md-9">
+                                                       <h1>
+                                                            {product.name}
+                                                       </h1>
+                                                       <p style={
+                                                            {
+                                                                 padding: "15px 0",
+                                                            }
+                                                       }>
+                                                            {product.description}
+                                                       </p>
+                                                       <button>
+                                                            Add to cart
+                                                       </button>
+                                                  </div>
+                                                  {/* right part end */}
+
+                                                  </div>
+                                        )}
+                                        
+                                   </div>
+                              </section>
+                              <FooterComponent></FooterComponent>
+                         </div>
+                    </div>
+               </section>
+
+          </div>
           
           
      );
