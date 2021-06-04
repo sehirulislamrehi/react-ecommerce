@@ -7,6 +7,15 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { useHistory } from "react-router";
 
+import FooterComponent from "../Includes/FooterComponent";
+import LeftContentComponent from "../Includes/LeftContentComponent";
+import CartComponent from "../Includes/mob/CartComponent";
+import SearchComponent from "../Includes/mob/SearchComponent";
+import SideBarComponent from "../Includes/mob/SideBarComponent";
+import NavbarComponent from "../Includes/pc/NavbarComponent";
+import TopbarComponent from "../Includes/pc/TopbarComponent";
+import TopLogoComponent from "../Includes/pc/TopLogoComponent";
+
 const MySwal = withReactContent(Swal)
 
 const RegisterComponent = () => {
@@ -63,99 +72,133 @@ const RegisterComponent = () => {
 
 
      return(
-          <section
-          style={
-               {
-                    padding: "30px 0"
-               }
-          }
-          className="auth-section"
-          >
-               <div className="container-fluid">
-                    <div className="row">
-                         <div className="col-md-12">
-                              <h1 className="text-center">
-                                   Register Here
-                              </h1>
-                         </div>
+
+          <div className="id">
+
+               <div className="section-top-fixed">
+                    <div className="for-pc">
+                         <TopbarComponent></TopbarComponent>
+                         <TopLogoComponent></TopLogoComponent>
+                         <NavbarComponent></NavbarComponent>
                     </div>
-                    
 
-                    <div className="row">
-                         <div className="auth-box" style={{width: "100%"}}>
-                              <div class="col-md-4 offset-md-4 col-12">
-                                   <form action="" method="">
-                                        <div class="form-group" style={{
-                                             position: "relative", marginTop: "20px"
-                                             }}>
-                                             <label>Name</label>
-
-                                             <input type="name" value={name} onChange={
-                                                  e => {
-                                                       set_name(e.target.value)
-                                                  }
-                                             } class="form-control" placeholder="Enter your name" required></input>
-                                             
-                                             { errors.name && 
-                                                  <small style={{
-                                                       color: "red"
-                                                  }}>{errors.name[0]}</small>
-                                             }
-                                             
-                                        </div>
-                                        <div class="form-group" style={{
-                                             position: "relative", marginTop: "20px"
-                                             }}>
-                                             <label>Email</label>
-                                             <input type="email" onChange={e => {set_email(e.target.value)}} class="form-control" placeholder="Enter your email address" required></input>
-                                             { errors.email && 
-                                                  <small style={{
-                                                       color: "red"
-                                                  }}>{errors.email[0]}</small>
-                                             }
-                                        </div>
-                                        <div class="form-group" style={{
-                                             position: "relative", marginTop: "20px"
-                                             }}>
-                                             <label>Password</label>
-                                             <input type="password" onChange={e => {set_password(e.target.value)}}  class="form-control" placeholder="Enter your password" required></input>
-                                             { errors.password && 
-                                                  <small style={{
-                                                       color: "red"
-                                                  }}>{errors.password[0]}</small>
-                                             }
-                                        </div>
-                                        <div class="form-group" style={{
-                                             position: "relative", marginTop: "20px"
-                                             }}>
-                                             <label>Confirm Password</label>
-                                             <input type="password" onChange={e => { set_confirm_password(e.target.value)}} class="form-control" placeholder="Enter your password again" required></input>
-                                             { errors.password && 
-                                                  <small style={{
-                                                       color: "red"
-                                                  }}>{errors.password[0]}</small>
-                                             }
-                                        </div>
-                                        <div class="form-group" style={{
-                                             position: "relative", marginTop: "20px"
-                                             }}> 
-                                             <button type="button" onClick={do_register} class="auth-submit">
-                                                  <div class="spinner-border" id="spinner-border" role="status" style={{display:"none"}}>
-                                                       <span class="sr-only">Loading...</span>
-                                                  </div>
-                                                  Register
-                                             </button>
-                                        </div>
-                                   </form>
-                              </div>
-
-                              <div class="col-md-4 offset-md-4 col-12">
-                                   <p>Already Registered? Go to <Link to="/login">login</Link> page</p>
-                              </div>
-                         </div>
+                    <div className="for-mob">
+                         <SideBarComponent></SideBarComponent>
+                         <SearchComponent></SearchComponent>
+                         <CartComponent></CartComponent>
                     </div>
                </div>
-          </section>
+
+               <section className="website_main_section" id="website_main_section">
+                    <div className="website_main_main_row">
+
+                         <div className="left-content">
+                              <LeftContentComponent></LeftContentComponent>
+                         </div>
+
+                         <div className="right-content">
+                              <section
+                                   style={
+                                        {
+                                             padding: "30px 0"
+                                        }
+                                   }
+                                   className="auth-section"
+                                   >
+                                        <div className="container-fluid">
+                                             <div className="row">
+                                                  <div className="col-md-12">
+                                                       <h1 className="text-center">
+                                                            Register Here
+                                                       </h1>
+                                                  </div>
+                                             </div>
+                                             
+
+                                             <div className="row">
+                                                  <div className="auth-box" style={{width: "100%"}}>
+                                                       <div class="col-md-4 offset-md-4 col-12">
+                                                            <form action="" method="">
+                                                                 <div class="form-group" style={{
+                                                                      position: "relative", marginTop: "20px"
+                                                                      }}>
+                                                                      <label>Name</label>
+
+                                                                      <input type="name" value={name} onChange={
+                                                                           e => {
+                                                                                set_name(e.target.value)
+                                                                           }
+                                                                      } class="form-control" placeholder="Enter your name" required></input>
+                                                                      
+                                                                      { errors.name && 
+                                                                           <small style={{
+                                                                                color: "red"
+                                                                           }}>{errors.name[0]}</small>
+                                                                      }
+                                                                      
+                                                                 </div>
+                                                                 <div class="form-group" style={{
+                                                                      position: "relative", marginTop: "20px"
+                                                                      }}>
+                                                                      <label>Email</label>
+                                                                      <input type="email" onChange={e => {set_email(e.target.value)}} class="form-control" placeholder="Enter your email address" required></input>
+                                                                      { errors.email && 
+                                                                           <small style={{
+                                                                                color: "red"
+                                                                           }}>{errors.email[0]}</small>
+                                                                      }
+                                                                 </div>
+                                                                 <div class="form-group" style={{
+                                                                      position: "relative", marginTop: "20px"
+                                                                      }}>
+                                                                      <label>Password</label>
+                                                                      <input type="password" onChange={e => {set_password(e.target.value)}}  class="form-control" placeholder="Enter your password" required></input>
+                                                                      { errors.password && 
+                                                                           <small style={{
+                                                                                color: "red"
+                                                                           }}>{errors.password[0]}</small>
+                                                                      }
+                                                                 </div>
+                                                                 <div class="form-group" style={{
+                                                                      position: "relative", marginTop: "20px"
+                                                                      }}>
+                                                                      <label>Confirm Password</label>
+                                                                      <input type="password" onChange={e => { set_confirm_password(e.target.value)}} class="form-control" placeholder="Enter your password again" required></input>
+                                                                      { errors.password && 
+                                                                           <small style={{
+                                                                                color: "red"
+                                                                           }}>{errors.password[0]}</small>
+                                                                      }
+                                                                 </div>
+                                                                 <div class="form-group" style={{
+                                                                      position: "relative", marginTop: "20px"
+                                                                      }}> 
+                                                                      <button type="button" onClick={do_register} class="auth-submit">
+                                                                           <div class="spinner-border" id="spinner-border" role="status" style={{display:"none"}}>
+                                                                                <span class="sr-only">Loading...</span>
+                                                                           </div>
+                                                                           Register
+                                                                      </button>
+                                                                 </div>
+                                                            </form>
+                                                       </div>
+
+                                                       <div class="col-md-4 offset-md-4 col-12">
+                                                            <p>Already Registered? Go to <Link to="/login">login</Link> page</p>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </section>
+                         <FooterComponent></FooterComponent>
+                         </div>
+
+                    </div>
+               </section>
+
+          </div>
+
+          
      );
 }
 

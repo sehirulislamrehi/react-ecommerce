@@ -18,8 +18,9 @@ function App() {
   return (
 
     <Router>
+      <Switch>
       <div className="App">
-        <Switch>
+        
 
           <Route exact path="/">
             <HomeComponent></HomeComponent>
@@ -29,8 +30,29 @@ function App() {
             <ProductDetail></ProductDetail>
           </Route>
 
-        </Switch>
+          <Route path="/category_details/:slug">
+            <CategoryDetailsComponent></CategoryDetailsComponent>
+          </Route>
+
+          <Route path="/shop">
+            <ShopComponent></ShopComponent>
+          </Route>
+
+          <Route path="/login">
+            <LoginComponent></LoginComponent>
+          </Route>
+
+          <Route path="/register">
+            <RegisterComponent></RegisterComponent>
+          </Route>
+
+          <Route path="/profile">
+             <ProfileComponent></ProfileComponent> 
+          </Route>
+
+        
       </div>
+      </Switch>
     </Router>
     
   

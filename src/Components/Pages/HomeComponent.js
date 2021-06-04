@@ -42,7 +42,7 @@ const HomeComponent = () => {
                 <div className="website_main_main_row">
 
                     <div className="left-content">
-                    <LeftContentComponent></LeftContentComponent>
+                        <LeftContentComponent></LeftContentComponent>
                     </div>
 
                     <div className="right-content">
