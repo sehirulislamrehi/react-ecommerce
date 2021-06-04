@@ -11,9 +11,12 @@ import HomeComponent from "./Components/Pages/HomeComponent";
 import ProductDetail from "./Components/Pages/ProductDetailComponent";
 import CategoryDetailsComponent from "./Components/Pages/CategoryDetailsComponent";
 import ShopComponent from "./Components/Pages/ShopComponent";
+import LoginComponent from "./Components/Pages/LoginComponent";
+import RegisterComponent from "./Components/Pages/RegisterComponent";
 
 function App() {
 
+  
   
   return (
 
@@ -56,6 +59,12 @@ function App() {
                 </Route>
                 <Route path="/shop">
                   <ShopComponent></ShopComponent>
+                </Route>
+                <Route path="/login">
+                  <LoginComponent></LoginComponent>
+                </Route>
+                <Route path="/register">
+                  <RegisterComponent></RegisterComponent>
                 </Route>
               </Switch>
               {/* all pages route here */}

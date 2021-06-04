@@ -42,10 +42,10 @@ const TopbarComponent = () => {
                                       </Link>
                                   </li>
                                   <li>
-                                      <a href="#">
-                                          <i className="fas fa-user"></i>
+                                      <Link to="/login">
+                                            <i className="fas fa-user"></i>
                                           Sign In
-                                      </a>
+                                      </Link>
                                   </li>
                               </ul>
                           </div>
