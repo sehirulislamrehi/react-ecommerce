@@ -23,6 +23,7 @@ const CartComponent = () => {
                                     <div className="cart_list_mob" id="cart_list_mob">
                                         <table className="table table-striped">
                                             <tbody>
+                                                
                                                 <tr>
                                                     <td>
                                                         <img src="images/product-1.jpg" width="50px" alt=""></img>
@@ -37,20 +38,7 @@ const CartComponent = () => {
                                                         </button>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>
-                                                        <img src="images/product-1.jpg" width="50px" alt=""></img>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#">Asparagus - 1 kg / Green</a>
-                                                        <p>1 x $229.00 USD</p>
-                                                    </td>
-                                                    <td>
-                                                        <button className="remove_cart">
-                                                            <i className="fas fa-times"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+
                                             </tbody>
                                         </table>
 

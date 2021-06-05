@@ -12,6 +12,10 @@ import NavbarComponent from "../Includes/pc/NavbarComponent";
 import TopbarComponent from "../Includes/pc/TopbarComponent";
 import TopLogoComponent from "../Includes/pc/TopLogoComponent";
 
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
+
 const ProductDetail = () => {
 
      {/* window scroll to top */}
@@ -31,6 +35,61 @@ const ProductDetail = () => {
           })
      },[url])
 
+     let cartsample = {
+          id: "",
+          name: "",
+          image: "",
+          qty: "",
+          price: "",
+     }
+
+     const [ cart_length, set_cart_length ] = useState()
+
+     const add_to_cart = (e) => {
+          const id = e.target.id
+          let cart_add = JSON.parse(localStorage.getItem("cart")) || 0;
+
+          axios.get(`https://vuebackend.sehirulislamrehi.com/api/addtocart/${id}`)
+          .then( res => {
+               let cart = JSON.parse(localStorage.getItem("cart")) || [];
+               let exist = false;
+
+               cartsample.id = res.data.product.id;
+               cartsample.name = res.data.product.name;
+               cartsample.image = res.data.product.image;
+               cartsample.qty = 1;
+               cartsample.price = res.data.product.offer_price
+               ? res.data.product.offer_price
+               : res.data.product.regular_price;
+
+               cart.filter((value, index) => {
+                    if( exist == false ){
+                        if (value.id == cartsample.id) {
+                            cart[index].qty += 1;
+                            exist = true;
+                        }
+                    }
+               });
+
+               if (exist == false) {
+                    cart.push(cartsample);
+               }
+
+               localStorage.setItem("cart", JSON.stringify(cart));
+
+               MySwal.fire({
+                    title : "Success",
+                    text : "Product Added To The Cart"
+               })
+
+               let cart_add = JSON.parse(localStorage.getItem("cart"));
+
+               set_cart_length(cart_add.length)
+               
+          })
+     }
+     
+     
      
 
      return (
@@ -86,7 +145,7 @@ const ProductDetail = () => {
                                                        }>
                                                             {product.description}
                                                        </p>
-                                                       <button>
+                                                       <button onClick={add_to_cart} id={product.id}>
                                                             Add to cart
                                                        </button>
                                                   </div>

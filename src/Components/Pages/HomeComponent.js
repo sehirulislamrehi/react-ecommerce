@@ -166,7 +166,6 @@ const HomeComponent = () => {
                                                                 <p className="name">{value.name}</p>
                                                                 {/* <p className="regular_price">100 BDT</p> */}
                                                                 <p className="offer_price">{ value.offer_price ? value.offer_price : value.regular_price } BDT</p>
-                                                                <button className="add_cart">Add To Cart</button>
                                                             </Link>
                                                         </div>
                                                     </div>

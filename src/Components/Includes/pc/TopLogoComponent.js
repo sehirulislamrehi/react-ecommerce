@@ -1,9 +1,34 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import GetCategoryData from "../../../Functionality/GetCategoryData";
+
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
 
 const TopLogoComponent = () => {
 
     const { data:category } = GetCategoryData("https://vuebackend.sehirulislamrehi.com/api/category");
+    
+    const remove_cart = (e) => {
+        const id = e.target.id
+
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        cart.filter((value, index) => {
+            if (value.id == id) {
+                cart.splice(index, 1);
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+        });
+
+        if( JSON.parse(localStorage.getItem("cart")) == 0 ){
+            localStorage.removeItem("cart")
+        }
+        MySwal.fire({
+            title : "Success",
+            text : "Product Removed From The Cart"
+       })
+    }
     
      return ( 
           <section className="top-logo">
@@ -45,53 +70,55 @@ const TopLogoComponent = () => {
                                         <div className="cart_block">
                                             <ul>
                                                 <li className="cart_box" id="cart_box" >
-                                                    <div className="cart_count">
-                                                        <p>5</p>
-                                                    </div>
+                                                    {
+                                                        JSON.parse(localStorage.getItem("cart")) &&
+                                                        <div className="cart_count">
+                                                            <p>
+                                                            {
+                                                                JSON.parse(localStorage.getItem("cart")).length
+                                                            }
+                                                            </p>
+                                                        </div>
+                                                    }
+                                                    
                                                     <i className="fas fa-shopping-basket"></i>
 
-                                                    <div className="cart_list" id="cart_list">
-                                                        <table className="table table-striped">
-                                                            
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <img src="/images/product-1.jpg" width="50px" alt=""></img>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="#">Asparagus - 1 kg / Green</a>
-                                                                        <p>1 x $229.00 USD</p>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button className="remove_cart">
-                                                                            <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <img src="/images/product-1.jpg" width="50px" alt=""></img>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="#">Asparagus - 1 kg / Green</a>
-                                                                        <p>1 x $229.00 USD</p>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button className="remove_cart">
-                                                                            <i className="fas fa-times"></i>
-                                                                        </button>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+                                                    {
+                                                        JSON.parse(localStorage.getItem("cart")) &&
+                                                        <div className="cart_list" id="cart_list">
+                                                            <table className="table table-striped">
+                                                                
+                                                                <tbody id="cart_list_body">
+                                                                    {
+                                                                        JSON.parse(localStorage.getItem("cart")).map( (value, index)  => (
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <img src={value.image} width="50px" alt=""></img>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <a href="#">{value.name}</a>
+                                                                                    <p>{value.qty}x {value.price}</p>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <button className="remove_cart" onClick={remove_cart} >
+                                                                                        <i className="fas fa-times" id={value.id}></i>
+                                                                                    </button>
+                                                                                </td>
+                                                                            </tr>
+                                                                        ))
+                                                                    }
+                                                                </tbody>
+                                                            </table>
 
-                                                        <div className="cart_detail">
-                                                            <p className="text-center">Cart Total <span>1000 BDT</span> </p>
-                                                            <a href="" className="checkout">Checkout</a>
-                                                            <a href="" className="cart_view">Cart View</a>
+                                                            <div className="cart_detail">
+                                                                
+                                                                <a href="" className="checkout">Checkout</a>
+                                                                <a href="" className="cart_view">Cart View</a>
+                                                            </div>
+
                                                         </div>
-
-                                                    </div>
+                                                    }
+                                                    
                                                     
 
                                                 </li>
