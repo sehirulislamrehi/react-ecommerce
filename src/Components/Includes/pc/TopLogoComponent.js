@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import GetCategoryData from "../../../Functionality/GetCategoryData";
 
@@ -9,6 +9,11 @@ const MySwal = withReactContent(Swal)
 const TopLogoComponent = () => {
 
     const { data:category } = GetCategoryData("https://vuebackend.sehirulislamrehi.com/api/category");
+
+    const [cart_length, set_cart_length ] = useState()
+
+
+    
     
     const remove_cart = (e) => {
         const id = e.target.id
@@ -21,13 +26,17 @@ const TopLogoComponent = () => {
             }
         });
 
-        if( JSON.parse(localStorage.getItem("cart")) == 0 ){
-            localStorage.removeItem("cart")
-        }
+        
+        set_cart_length(JSON.parse(localStorage.getItem("cart")).length)
+        
+
         MySwal.fire({
             title : "Success",
             text : "Product Removed From The Cart"
-       })
+        })
+
+        
+        
     }
     
      return ( 
@@ -69,10 +78,11 @@ const TopLogoComponent = () => {
                                     <div className="col-md-12" style={{position: "relative"}}>
                                         <div className="cart_block">
                                             <ul>
+                                                { JSON.parse(localStorage.getItem("cart")) &&
                                                 <li className="cart_box" id="cart_box" >
                                                     {
-                                                        JSON.parse(localStorage.getItem("cart")) &&
-                                                        <div className="cart_count">
+                                                        JSON.parse(localStorage.getItem("cart")).length != 0 &&
+                                                        <div className="cart_count" id="cart_count">
                                                             <p>
                                                             {
                                                                 JSON.parse(localStorage.getItem("cart")).length
@@ -84,7 +94,7 @@ const TopLogoComponent = () => {
                                                     <i className="fas fa-shopping-basket"></i>
 
                                                     {
-                                                        JSON.parse(localStorage.getItem("cart")) &&
+                                                        JSON.parse(localStorage.getItem("cart")).length != 0 &&
                                                         <div className="cart_list" id="cart_list">
                                                             <table className="table table-striped">
                                                                 
@@ -111,9 +121,7 @@ const TopLogoComponent = () => {
                                                             </table>
 
                                                             <div className="cart_detail">
-                                                                
-                                                                <a href="" className="checkout">Checkout</a>
-                                                                <a href="" className="cart_view">Cart View</a>
+                                                                <Link to="/checkout" className="checkout">Checkout</Link>
                                                             </div>
 
                                                         </div>
@@ -122,6 +130,7 @@ const TopLogoComponent = () => {
                                                     
 
                                                 </li>
+                                                }
                                             </ul>
 
                                         </div>

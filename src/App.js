@@ -8,6 +8,7 @@ import ShopComponent from "./Components/Pages/ShopComponent";
 import LoginComponent from "./Components/Pages/LoginComponent";
 import RegisterComponent from "./Components/Pages/RegisterComponent";
 import ProfileComponent from "./Components/Pages/ProfileComponent";
+import CheckOut from "./Components/Pages/CheckOutComponent";
 
 
 
@@ -48,6 +49,10 @@ function App() {
 
           <Route path="/profile">
              <ProfileComponent></ProfileComponent> 
+          </Route>
+
+          <Route path="/checkout">
+              <CheckOut></CheckOut>
           </Route>
 
         
