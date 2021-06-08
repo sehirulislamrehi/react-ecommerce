@@ -118,6 +118,7 @@ const CheckOut = () => {
                     })
                }
           })
+          set_product(cart)
      }
 
      const place_order = () => {
