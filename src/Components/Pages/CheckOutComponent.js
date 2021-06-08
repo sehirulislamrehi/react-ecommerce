@@ -75,6 +75,7 @@ const CheckOut = () => {
                     localStorage.setItem('cart', JSON.stringify(cart))
                }
           })
+          set_product(cart)
           set_cart_total(total)
      }
 
@@ -98,6 +99,7 @@ const CheckOut = () => {
                     localStorage.setItem('cart', JSON.stringify(cart))
                }
           })
+          set_product(cart)
           set_cart_total(total)
      }
 
