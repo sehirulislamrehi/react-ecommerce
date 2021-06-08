@@ -1,10 +1,16 @@
+
 const SearchComponent = () => {
+
+    const show_sidebar = () => {
+        document.getElementById("side_bar_mob").style.transform  = "translateX(0%)"
+    }
+
      return ( 
           <section className="search-mob">
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-1">
-                            <div className="left" id="show_sidebar">
+                            <div className="left" id="show_sidebar" onClick={show_sidebar}>
                                 <i className="fas fa-bars"></i>
                             </div>
                         </div>

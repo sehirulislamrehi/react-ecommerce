@@ -64,7 +64,28 @@
         text-align: center;
       
       }
+    .website_main_section .left-content {
+        width: 0;
+    }
+    .website_main_section .right-content {
+        left: 0;
+        width: 100%;
+    }
+    .for-pc{
+        display: none;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,59 +1,120 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import Swal from "sweetalert2"
+import withReactContent from 'sweetalert2-react-content'
+const MySwal = withReactContent(Swal)
+
 const CartComponent = () => {
+
+    const [cart_length, set_cart_length ] = useState()
+
+    const remove_cart = (e) => {
+        const id = e.target.id
+
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        cart.filter((value, index) => {
+            if (value.id == id) {
+                cart.splice(index, 1);
+                localStorage.setItem("cart", JSON.stringify(cart));
+            }
+        });
+
+        
+        set_cart_length(JSON.parse(localStorage.getItem("cart")).length)
+        
+
+        MySwal.fire({
+            title : "Success",
+            text : "Product Removed From The Cart"
+        })
+
+    }
+
      return ( 
           <section className="cart-section">
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-4">
-                            <img src="images/logo.png" className="img-fluid" width="80px" alt=""></img>
+                            <Link to="/">
+                            <img src="/images/logo.png" className="img-fluid" width="80px" alt=""></img>
+                            </Link>
                         </div>
                         <div className="col-8">
                             <ul>
-                                <li>
-                                    <a href="">
-                                        <i className="far fa-heart"></i>
-                                    </a>
-                                </li>
+                                { JSON.parse(localStorage.getItem("cart")) &&
                                 <li className="cart_box" id="cart_box" 
                                     >
+                                    {
+                                        JSON.parse(localStorage.getItem("cart")).length != 0 &&
                                     <div className="cart_count">
-                                        <p>5</p>
+                                        <p>
+                                        {
+                                            JSON.parse(localStorage.getItem("cart")).length
+                                        }
+                                        </p>
                                     </div>
+                                    }
                                     <i className="fas fa-shopping-basket"></i>
-
+                                    
+                                    {
+                                        JSON.parse(localStorage.getItem("cart")).length != 0 &&
                                     <div className="cart_list_mob" id="cart_list_mob">
                                         <table className="table table-striped">
                                             <tbody>
-                                                
-                                                <tr>
-                                                    <td>
-                                                        <img src="images/product-1.jpg" width="50px" alt=""></img>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#">Asparagus - 1 kg / Green</a>
-                                                        <p>1 x $229.00 USD</p>
-                                                    </td>
-                                                    <td>
-                                                        <button className="remove_cart">
-                                                            <i className="fas fa-times"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                {
+                                                    JSON.parse(localStorage.getItem("cart")).map( (value, index)  => (
+                                                    <tr>
+                                                        <td>
+                                                            <img src={value.image} width="50px" alt=""></img>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#">{value.name}</a>
+                                                            <p>{value.qty}x {value.price}</p>
+                                                        </td>
+                                                        <td>
+                                                            <button className="remove_cart"  onClick={remove_cart}>
+                                                                <i className="fas fa-times" id={value.id}></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            }
 
                                             </tbody>
                                         </table>
 
                                         <div className="cart_detail">
-                                            <p className="text-center">Cart Total <span>1000 BDT</span> </p>
-                                            <a href="" className="checkout">Checkout</a>
-                                            <a href="" className="cart_view">Cart View</a>
+                                        <Link to="/checkout" className="checkout">Checkout</Link>
                                         </div>
 
                                     </div>
+                                    }
                                 </li>
+                                }
+
+                                    { localStorage.getItem("authenticated") ?
+                                    ""
+                                    :
+                                    <li>
+                                        <Link to="/login">
+                                                <i className="fas fa-user"></i>
+                                            login
+                                        </Link>
+                                    </li>                                    
+                                    }
+
+                                { localStorage.getItem("authenticated") && 
                                 <li>
-                                    <a href="">
+                                    <Link to="/profile">
                                         <i className="fas fa-user"></i>
-                                    </a>
+                                    </Link>
+                                </li>
+                                }
+                                <li>
+                                    <Link to="/shop">
+                                        <i className="fas fa-shopping-bag"></i>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>

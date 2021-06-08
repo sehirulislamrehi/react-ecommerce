@@ -19,7 +19,7 @@ const HomeComponent = () => {
     window.scrollTo(0, 0);
 
     const { data:category } = GetCategoryData("https://vuebackend.sehirulislamrehi.com/api/category") 
-     
+   
     return ( 
          
         <div className="id">
@@ -106,7 +106,7 @@ const HomeComponent = () => {
 
                                                 {category && <OwlCarousel className='category-carousel owl-theme banner-carousel' 
                                                 loop 
-                                                items="10"
+                                                items="8"
                                                 >
                 
                                                     {/* item start */}
@@ -118,7 +118,7 @@ const HomeComponent = () => {
                                                                     <div className="icon">
                                                                         <img src={data.image} alt=""></img>
                                                                     </div>
-                                                                    <p>{data.name}</p>
+                                                                    <p className="for-pc">{data.name}</p>
                                                                 </div>
                                                             </Link>
                                                         </div>

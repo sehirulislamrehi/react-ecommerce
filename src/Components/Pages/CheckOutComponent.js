@@ -178,7 +178,7 @@ const CheckOut = () => {
                               <section class="checkout-section">
                                    <div class="container-fluid">
                                         <div class="row">
-                                             <div class="col-md-9 table-responsive">
+                                             <div class="col-md-9 col-12 table-responsive">
                                                   <table class="table table-striped">
                                                        <thead>
                                                             <tr>
@@ -213,7 +213,7 @@ const CheckOut = () => {
                                                        </tbody>
                                                   </table>
                                              </div>
-                                             <div class="col-md-3">
+                                             <div class="col-md-3 col-12">
                                                   <div class="order-summary">
                                                        <h4>Order Summary</h4>
                                                        <p>Delivery Charge {delivery_charge} BDT</p>

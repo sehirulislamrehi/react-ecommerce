@@ -326,6 +326,9 @@ button:focus{
 .cart_box:hover .cart_list{
   display: block;
 }
+.cart_box:hover .cart_list_mob{
+  display: block;
+}
 /* topbar logo end */
 
 
