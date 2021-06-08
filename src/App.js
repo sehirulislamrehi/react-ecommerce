@@ -9,6 +9,7 @@ import LoginComponent from "./Components/Pages/LoginComponent";
 import RegisterComponent from "./Components/Pages/RegisterComponent";
 import ProfileComponent from "./Components/Pages/ProfileComponent";
 import CheckOut from "./Components/Pages/CheckOutComponent";
+import InvoiceDetails from "./Components/Pages/InvoiceDetails";
 
 
 
@@ -49,6 +50,10 @@ function App() {
 
           <Route path="/profile">
              <ProfileComponent></ProfileComponent> 
+          </Route>
+
+          <Route path="/invoice_details/:id">
+             <InvoiceDetails></InvoiceDetails>
           </Route>
 
           <Route path="/checkout">

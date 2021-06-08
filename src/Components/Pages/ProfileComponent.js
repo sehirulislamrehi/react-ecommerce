@@ -9,6 +9,8 @@ import NavbarComponent from "../Includes/pc/NavbarComponent";
 import TopbarComponent from "../Includes/pc/TopbarComponent";
 import TopLogoComponent from "../Includes/pc/TopLogoComponent";
 
+import { Link } from "react-router-dom"
+
 import { useHistory } from "react-router-dom"
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
@@ -16,11 +18,13 @@ import { useEffect, useState } from "react";
 const MySwal = withReactContent(Swal)
 
 
+
 const ProfileComponent = () => {
 
      const history = useHistory()
      const [ name, set_name ] = useState()
      const [ email, set_email ] = useState()
+     const [ invoice, set_invoice ] = useState([])
 
      if( !localStorage.getItem("authenticated") ){
           history.push("/login")
@@ -31,6 +35,8 @@ const ProfileComponent = () => {
      const url = `https://vuebackend.sehirulislamrehi.com/api/profile/${token}`;
 
      useEffect( () => {
+
+          //get user data
           axios.get(url)
           .then( res => {
                set_name(res.data.visitor.name)
@@ -39,6 +45,16 @@ const ProfileComponent = () => {
           .catch( err => {
                console.log(err)
           })
+
+          //get invoice
+          let token = localStorage.getItem('authenticated')
+          axios.get(`https://vuebackend.sehirulislamrehi.com/api/profile/order/${token}`,)
+          .then( res => {
+               if( res.data.invoice.length > 0 ){
+                    set_invoice(res.data.invoice)
+               }
+          })
+
      },[url])
           
      
@@ -60,6 +76,27 @@ const ProfileComponent = () => {
                     text : "You are successfully logged out."
                })
           }
+     }
+
+     //delete invoice
+     const delete_invoice = (e) => {
+          const id = e.target.id
+          axios.get(`https://vuebackend.sehirulislamrehi.com/api/invoice/delete/${id}`)
+          .then((res) => {
+               invoice.filter((value, index) => {
+                    if( res.data.invoice ){
+                         if( value.id == id ){
+                              invoice.splice(index, 1)
+                              set_invoice(res.data.invoice)
+                              MySwal.fire({
+                                   title : "Success",
+                                   text : "Invoice Deleted"
+                              })
+                         }
+                    }
+               })
+               
+          })
      }
 
      return(
@@ -121,6 +158,7 @@ const ProfileComponent = () => {
                                              <div className="col-md-12">
                                                   <h4>Previous order history</h4>
                                              </div>
+                                             
                                              <div className="col-md-12 table-responsive">
                                                   <table className="table table-striped">
                                                        <thead>
@@ -135,27 +173,42 @@ const ProfileComponent = () => {
                                                        </tr>
                                                        </thead>
                                                        <tbody>
-                                                       <tr>
-                                                            <th scope="row">#15</th>
-                                                            <td>Active</td>
-                                                            <td>
-                                                                 Rehi
-                                                            </td>
-                                                            <td>
-                                                                 Yes
-                                                            </td>
-                                                            <td>
-                                                                 100
-                                                            </td>
-                                                            <td>
-                                                                 6/4/2021
-                                                            </td>
-                                                            <td>
-                                                                 
-                                                                      <button>View</button>
-                                                                 <button>Delete Invoice</button>
-                                                            </td>
-                                                       </tr>
+                                                       {
+                                                            invoice && invoice.length > 0 ?
+
+                                                            invoice.map( (item, index) => (
+                                                                 <tr>
+                                                                      <th scope="row">#{item.id}</th>
+                                                                      <td>{ item.status }</td>
+                                                                      <td>
+                                                                      { item.paid_by }
+                                                                      </td>
+                                                                      <td>
+                                                                           {
+                                                                                item.is_payment_done ? 'Yes' : 'No'
+                                                                           }
+                                                                      </td>
+                                                                      <td>
+                                                                      { item.total }
+                                                                      </td>
+                                                                      <td>
+                                                                      { item.created_at }
+                                                                      </td>
+                                                                      <td>
+                                                                           
+                                                                           <button>
+                                                                           <Link to={`/invoice_details/${item.id}`}>View</Link>
+                                                                           </button>
+                                                                           <button onClick={delete_invoice} id={item.id} >Delete Invoice</button>
+                                                                      </td>
+                                                                 </tr>
+                                                            ))
+                                                            :
+
+                                                            ""
+                                                            
+                                                       }
+                                                       
                                                        </tbody>
                                                   </table>
                                              </div>
