@@ -62,7 +62,7 @@ const ProfileComponent = () => {
      },[url])
           
      
-     const invoice = useSelector( state => state.removeProfileInvoice )
+     const invoice = useSelector( state => state.profileInvoice )
 
      const do_logout = () => {
           if( localStorage.getItem('authenticated') ){
@@ -87,7 +87,7 @@ const ProfileComponent = () => {
           const id = e
           axios.get(`https://vuebackend.sehirulislamrehi.com/api/invoice/delete/${id}`)
           .then((res) => {
-               dispatch(profileInvoiceDelete(res, id, invoice))
+               dispatch(profileInvoiceDelete(res, id))
                // invoice.filter((value, index) => {
                     
                //      if( res.data.invoice ){

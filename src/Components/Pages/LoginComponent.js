@@ -59,6 +59,12 @@ const LoginComponent = () => {
                
           })
           .catch( err => {
+               if( err.response.data.invalid ){
+                    MySwal.fire({
+                         title : "warning",
+                         text : err.response.data.invalid,
+                    })
+               }
                const single_error = err.response.data.error
                const distructured_error = {...single_error}
                set_error(distructured_error)

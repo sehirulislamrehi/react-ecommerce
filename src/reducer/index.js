@@ -6,7 +6,7 @@ import { combineReducers } from 'redux'
 
 const allReducer = combineReducers({
      cart : cartReducer,
-     removeProfileInvoice : profileInvoice,
+     profileInvoice : profileInvoice,
 })
 
 export default allReducer;
