@@ -14,3 +14,21 @@ export const removeCart = (id) => {
           product_id : id,
      }
 };
+
+//get profile invoice data
+export const getProfileInvoiceData = (res) => {
+     return{
+          type : 'getProfileInvoiceData',
+          response : res,
+     }
+}    
+
+//delete profile invoice functionality
+export const profileInvoiceDelete = (res, id, invoice) => {
+     return{
+          type : 'removeProfileInvoice',
+          response : res,
+          product_id : id,
+          set_invoice : invoice,
+     }
+};

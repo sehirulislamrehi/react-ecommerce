@@ -19,7 +19,6 @@ const cartReducer = (state = false, action) => {
      if( action.type == "addToCart" ){
           
           const res = action.response
-
           
           let cart = JSON.parse(localStorage.getItem("cart")) || [];
           let exist = false;

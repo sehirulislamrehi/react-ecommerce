@@ -10,11 +10,13 @@ import TopbarComponent from "../Includes/pc/TopbarComponent";
 import TopLogoComponent from "../Includes/pc/TopLogoComponent";
 
 import { Link } from "react-router-dom"
+import { getProfileInvoiceData, profileInvoiceDelete } from "../../action";
 
 import { useHistory } from "react-router-dom"
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 const MySwal = withReactContent(Swal)
 
 
@@ -24,12 +26,13 @@ const ProfileComponent = () => {
      const history = useHistory()
      const [ name, set_name ] = useState()
      const [ email, set_email ] = useState()
-     const [ invoice, set_invoice ] = useState([])
+     // const [ invoice, set_invoice ] = useState([])
 
      if( !localStorage.getItem("authenticated") ){
           history.push("/login")
      }
      
+     const dispatch = useDispatch();
           
      const token = localStorage.getItem("authenticated")
      const url = `https://vuebackend.sehirulislamrehi.com/api/profile/${token}`;
@@ -51,14 +54,15 @@ const ProfileComponent = () => {
           axios.get(`https://vuebackend.sehirulislamrehi.com/api/profile/order/${token}`,)
           .then( res => {
                if( res.data.invoice.length > 0 ){
-                    set_invoice(res.data.invoice)
+                    dispatch(getProfileInvoiceData(res.data.invoice))
+                    // set_invoice(res.data.invoice)
                }
           })
 
      },[url])
           
      
-     
+     const invoice = useSelector( state => state.removeProfileInvoice )
 
      const do_logout = () => {
           if( localStorage.getItem('authenticated') ){
@@ -80,21 +84,23 @@ const ProfileComponent = () => {
 
      //delete invoice
      const delete_invoice = (e) => {
-          const id = e.target.id
+          const id = e
           axios.get(`https://vuebackend.sehirulislamrehi.com/api/invoice/delete/${id}`)
           .then((res) => {
-               invoice.filter((value, index) => {
-                    if( res.data.invoice ){
-                         if( value.id == id ){
-                              invoice.splice(index, 1)
-                              set_invoice(res.data.invoice)
-                              MySwal.fire({
-                                   title : "Success",
-                                   text : "Invoice Deleted"
-                              })
-                         }
-                    }
-               })
+               dispatch(profileInvoiceDelete(res, id, invoice))
+               // invoice.filter((value, index) => {
+                    
+               //      if( res.data.invoice ){
+               //           if( value.id == id ){
+               //                invoice.splice(index, 1)
+               //                set_invoice(res.data.invoice)
+               //                MySwal.fire({
+               //                     title : "Success",
+               //                     text : "Invoice Deleted"
+               //                })
+               //           }
+               //      }
+               // })
                
           })
      }
@@ -199,7 +205,7 @@ const ProfileComponent = () => {
                                                                            <button>
                                                                            <Link to={`/invoice_details/${item.id}`}>View</Link>
                                                                            </button>
-                                                                           <button onClick={delete_invoice} id={item.id} >Delete Invoice</button>
+                                                                           <button onClick={ () => delete_invoice(item.id)} >Delete Invoice</button>
                                                                       </td>
                                                                  </tr>
                                                             ))
