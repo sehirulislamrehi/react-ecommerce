@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import {useSelector, useDispatch} from 'react-redux'
+import { removeCart } from "../../../action";
+
 import { Link } from "react-router-dom";
 import GetCategoryData from "../../../Functionality/GetCategoryData";
 
@@ -9,38 +12,45 @@ import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
 
 
+
+
+
 const TopLogoComponent = () => {
 
     const { data:category } = GetCategoryData("https://vuebackend.sehirulislamrehi.com/api/category");
 
     const [cart_length, set_cart_length ] = useState()
 
+    const cart = useSelector( state => state.cart )
+
+    
+
+    
+    
+    const dispatch = useDispatch()
 
     const location = useLocation();
     const current_route = location.pathname
     
     const remove_cart = (e) => {
-        const id = e.target.id
+        // const id = e.target.id
 
-        let cart = JSON.parse(localStorage.getItem("cart"));
-        cart.filter((value, index) => {
-            if (value.id == id) {
-                cart.splice(index, 1);
-                localStorage.setItem("cart", JSON.stringify(cart));
-            }
-        });
-
-        
-        set_cart_length(JSON.parse(localStorage.getItem("cart")).length)
-        
-
-        MySwal.fire({
-            title : "Success",
-            text : "Product Removed From The Cart"
-        })
+        // let cart = JSON.parse(localStorage.getItem("cart"));
+        // cart.filter((value, index) => {
+        //     if (value.id == id) {
+        //         cart.splice(index, 1);
+        //         localStorage.setItem("cart", JSON.stringify(cart));
+        //     }
+        // });
 
         
+        // set_cart_length(JSON.parse(localStorage.getItem("cart")).length)
         
+
+        // MySwal.fire({
+        //     title : "Success",
+        //     text : "Product Removed From The Cart"
+        // })
     }
     
      return ( 
@@ -83,14 +93,14 @@ const TopLogoComponent = () => {
                                         <div className="col-md-12" style={{position: "relative"}}>
                                             <div className="cart_block">
                                                 <ul>
-                                                    { JSON.parse(localStorage.getItem("cart")) &&
+                                                    { cart.length > 0 &&
                                                     <li className="cart_box" id="cart_box" >
                                                         {
-                                                            JSON.parse(localStorage.getItem("cart")).length != 0 &&
+                                                            cart.length > 0 &&
                                                             <div className="cart_count" id="cart_count">
                                                                 <p>
                                                                 {
-                                                                    JSON.parse(localStorage.getItem("cart")).length
+                                                                    cart.length
                                                                 }
                                                                 </p>
                                                             </div>
@@ -99,13 +109,13 @@ const TopLogoComponent = () => {
                                                         <i className="fas fa-shopping-basket"></i>
 
                                                         {
-                                                            JSON.parse(localStorage.getItem("cart")).length != 0 &&
+                                                            cart.length > 0 &&
                                                             <div className="cart_list" id="cart_list">
                                                                 <table className="table table-striped">
                                                                     
                                                                     <tbody id="cart_list_body">
                                                                         {
-                                                                            JSON.parse(localStorage.getItem("cart")).map( (value, index)  => (
+                                                                            cart.map( (value, index)  => (
                                                                                 <tr>
                                                                                     <td>
                                                                                         <img src={value.image} width="50px" alt=""></img>
@@ -115,7 +125,7 @@ const TopLogoComponent = () => {
                                                                                         <p>{value.qty}x {value.price}</p>
                                                                                     </td>
                                                                                     <td>
-                                                                                        <button className="remove_cart" onClick={remove_cart} >
+                                                                                        <button className="remove_cart" onClick={() => dispatch(removeCart(value.id))} >
                                                                                             <i className="fas fa-times" id={value.id}></i>
                                                                                         </button>
                                                                                     </td>

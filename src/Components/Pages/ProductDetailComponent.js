@@ -12,6 +12,9 @@ import NavbarComponent from "../Includes/pc/NavbarComponent";
 import TopbarComponent from "../Includes/pc/TopbarComponent";
 import TopLogoComponent from "../Includes/pc/TopLogoComponent";
 
+import {  useDispatch } from "react-redux";
+import { addToCart } from "../../action";
+
 import Swal from "sweetalert2"
 import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
@@ -24,6 +27,8 @@ const ProductDetail = () => {
      const { slug } =  useParams();
      const url = `https://vuebackend.sehirulislamrehi.com/api/product/${slug}`;
      const [ product, setProduct ] = useState();
+
+     const dispatch = useDispatch()
 
      useEffect( () => {
           axios.get(url,{})
@@ -46,45 +51,48 @@ const ProductDetail = () => {
      const [ cart_length, set_cart_length ] = useState()
 
      const add_to_cart = (e) => {
-          const id = e.target.id
-          let cart_add = JSON.parse(localStorage.getItem("cart")) || 0;
+          const id = e
+          // let cart_add = JSON.parse(localStorage.getItem("cart")) || 0;
 
           axios.get(`https://vuebackend.sehirulislamrehi.com/api/addtocart/${id}`)
           .then( res => {
-               let cart = JSON.parse(localStorage.getItem("cart")) || [];
-               let exist = false;
 
-               cartsample.id = res.data.product.id;
-               cartsample.name = res.data.product.name;
-               cartsample.image = res.data.product.image;
-               cartsample.qty = 1;
-               cartsample.price = res.data.product.offer_price
-               ? res.data.product.offer_price
-               : res.data.product.regular_price;
+               dispatch(addToCart(res.data.product))
 
-               cart.filter((value, index) => {
-                    if( exist == false ){
-                        if (value.id == cartsample.id) {
-                            cart[index].qty += 1;
-                            exist = true;
-                        }
-                    }
-               });
+               // let cart = JSON.parse(localStorage.getItem("cart")) || [];
+               // let exist = false;
 
-               if (exist == false) {
-                    cart.push(cartsample);
-               }
+               // cartsample.id = res.data.product.id;
+               // cartsample.name = res.data.product.name;
+               // cartsample.image = res.data.product.image;
+               // cartsample.qty = 1;
+               // cartsample.price = res.data.product.offer_price
+               // ? res.data.product.offer_price
+               // : res.data.product.regular_price;
 
-               localStorage.setItem("cart", JSON.stringify(cart));
+               // cart.filter((value, index) => {
+               //      if( exist == false ){
+               //          if (value.id == cartsample.id) {
+               //              cart[index].qty += 1;
+               //              exist = true;
+               //          }
+               //      }
+               // });
 
-               MySwal.fire({
-                    title : "Success",
-                    text : "Product Added To The Cart"
-               })
+               // if (exist == false) {
+               //      cart.push(cartsample);
+               // }
 
-               let cart_add = JSON.parse(localStorage.getItem("cart"));
+               // localStorage.setItem("cart", JSON.stringify(cart));
 
-               set_cart_length(cart_add.length)
+               // MySwal.fire({
+               //      title : "Success",
+               //      text : "Product Added To The Cart"
+               // })
+
+               // let cart_add = JSON.parse(localStorage.getItem("cart"));
+
+               // set_cart_length(cart_add.length)
                
           })
      }
@@ -145,7 +153,8 @@ const ProductDetail = () => {
                                                        }>
                                                             {product.description}
                                                        </p>
-                                                       <button onClick={add_to_cart} id={product.id}>
+                                                       {/* <button onClick={add_to_cart} id={product.id}> */}
+                                                       <button onClick={ () => add_to_cart(product.id) } id={product.id}>
                                                             Add to cart
                                                        </button>
                                                   </div>
